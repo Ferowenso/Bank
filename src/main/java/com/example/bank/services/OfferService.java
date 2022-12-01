@@ -8,9 +8,9 @@ import java.util.List;
 
 public interface OfferService {
 
-    Offer addOffer(OfferRequest offerRequest, Long userId);
+    Offer addOffer(OfferRequest offerRequest);
     void deleteOffer(Long id);
-    List<Offer> getAllOffers(Long clientId);
+    List<Offer> getAllOffers();
     Offer getOfferById(Long id);
 
 }

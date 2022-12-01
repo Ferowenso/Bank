@@ -18,7 +18,7 @@ public class ClientController {
         this.clientService = service;
     }
 
-    @PostMapping("")
+    @PostMapping
     ResponseEntity<Client> addClient(@RequestBody @Valid Client newClient) {
         return ResponseEntity.ok().body(clientService.addClient(newClient));
     }
@@ -34,7 +34,7 @@ public class ClientController {
         return ResponseEntity.ok().body(clientService.getClientById(id));
     }
 
-    @GetMapping("")
+    @GetMapping
     ResponseEntity<List<Client>> getAllClients() {
         return ResponseEntity.ok().body(clientService.getAllClients());
     }

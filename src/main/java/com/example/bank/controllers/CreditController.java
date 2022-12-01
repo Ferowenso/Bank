@@ -25,12 +25,12 @@ public class CreditController {
         return ResponseEntity.ok().body(credit);
     }
 
-    @GetMapping("")
+    @GetMapping
     ResponseEntity<List<Credit>> getAllCredits(){
         return ResponseEntity.ok().body(creditService.getAllCredits());
     }
 
-    @PostMapping("")
+    @PostMapping
     ResponseEntity<Credit> addCredit(@RequestBody @Valid Credit credit){
         return ResponseEntity.ok().body(creditService.addCredit(credit));
     }

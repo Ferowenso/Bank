@@ -23,4 +23,10 @@ public class Credit {
     @NotNull
     private BigDecimal rate;
 
+    public Credit(long id, BigDecimal limit , BigDecimal rate) {
+    }
+
+    public Credit() {
+
+    }
 }

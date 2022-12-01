@@ -12,6 +12,7 @@ import java.util.List;
 @Service
 public class CreditServiceImpl implements CreditService {
 
+
     @Autowired
     private CreditRepository creditRepository;
 
@@ -41,10 +42,7 @@ public class CreditServiceImpl implements CreditService {
 
     @Override
     public Credit editCredit(Long id, Credit credit) {
-        if (creditRepository.findById(id).isPresent()) {
-            return creditRepository.save(credit);
-        }else {
-            throw new EntityNotFoundException();
-        }
+        creditRepository.findById(id);
+        return creditRepository.save(credit);
     }
 }

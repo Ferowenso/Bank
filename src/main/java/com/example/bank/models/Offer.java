@@ -18,10 +18,6 @@ public class Offer {
     private Long id;
 
     @NotNull
-    @ManyToOne
-    private Client client;
-
-    @NotNull
     @OneToOne
     private Credit credit;
 

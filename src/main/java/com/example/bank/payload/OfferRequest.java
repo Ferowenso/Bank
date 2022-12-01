@@ -15,10 +15,15 @@ public class OfferRequest {
     private Long creditId;
 
     @NotNull
+    private Long clientId;
+
+    @NotNull
     private BigDecimal creditSum;
 
     @NotNull
     private Integer period;
+
+
 
 
 }

@@ -36,5 +36,14 @@ public class Client {
     @Column(unique=true)
     private String passport;
 
+    @OneToMany
+    private List<Offer> offers;
 
+
+    public Client(long id, String fullName,String email, String phone, String passport) {
+    }
+
+    public Client() {
+
+    }
 }

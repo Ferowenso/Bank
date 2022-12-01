@@ -1,5 +1,6 @@
 package com.example.bank.services.impl;
 
+import com.example.bank.exceptions.ClientNotFoundException;
 import com.example.bank.models.Client;
 import com.example.bank.models.Credit;
 import com.example.bank.models.Offer;
@@ -33,9 +34,9 @@ public class OfferServiceImpl implements OfferService {
     private CreditRepository creditRepository;
 
     @Override
-    public Offer addOffer(OfferRequest offerRequest, Long userId) {
+    public Offer addOffer(OfferRequest offerRequest) {
         Credit credit = creditRepository.findById(offerRequest.getCreditId()).orElseThrow(EntityNotFoundException::new);
-        Client client = clientRepository.findById(userId).orElseThrow(EntityNotFoundException::new);
+        Client client = clientRepository.findById(offerRequest.getClientId()).orElseThrow(EntityNotFoundException::new);
         int period = offerRequest.getPeriod();
         BigDecimal creditLimit = credit.getLimit();
         BigDecimal creditSum = offerRequest.getCreditSum();
@@ -60,7 +61,9 @@ public class OfferServiceImpl implements OfferService {
                 payments.add(payment);
                 creditBalance = creditBalance.subtract(repaymentSum);
             }
-            offer.setClient(client);
+            List<Offer> offers = client.getOffers();
+            offers.add(offer);
+            client.setOffers(offers);
             offer.setCredit(credit);
             offer.setCreditSum(creditSum);
             offer.setPayments(payments);
@@ -75,8 +78,8 @@ public class OfferServiceImpl implements OfferService {
     }
 
     @Override
-    public List<Offer> getAllOffers(Long clientId) {
-        List<Offer> offers = offerRepository.findAllByClient_Id(clientId);
+    public List<Offer> getAllOffers() {
+        List<Offer> offers = offerRepository.findAll();
         return offers;
     }
 

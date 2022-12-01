@@ -7,6 +7,4 @@ import java.util.List;
 
 public interface OfferRepository extends JpaRepository<Offer, Long> {
 
-    List<Offer> findAllByClient_Id(Long clientId);
-
 }
